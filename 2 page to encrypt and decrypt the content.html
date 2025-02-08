@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+<title>blocco di testo cifrato</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>	
+	
+
+
+<style>
+html, body {
+	margin:0px;padding:0px; 
+	overflow: hidden;
+	background: #bbb; 
+}
+</style> 
+<style>
+html, body {
+
+}
+</style>
+</head>
+<body>
+
+<h3> Encrypted text block </h3>
+
+<button type="button" onclick="document.getElementById('ctn_message').value = ''; document.getElementById('ctn_message').focus();">clear</button> 
+
+<br><br>
+
+<textarea id="ctn_message" rows="10" style=" width: 100% ;" placeholder="paste here... "></textarea> 
+
+<br>
+
+<button type="button" onclick="fn_encrypt();">encrypt</button> <button type="button" onclick="fn_decrypt();">decrypt</button> 
+
+<br><br>
+
+<textarea id="ctn_output" rows="10" style=" width: 100% ;"></textarea> 
+
+<button type="button" onclick="navigator.clipboard.writeText( document.getElementById('ctn_output').value )   ">to clipboard</button> 
+
+<br><br><br><br>
+
+<script>
+function fn_encrypt() {
+ 
+	let strA = document.getElementById('ctn_message').value ; 
+
+	let secretKey = 'a';
+
+	// cifra il contenuto della textarea message
+	
+	let encrypted = CryptoJS.AES.encrypt(strA , secretKey).toString();
+	
+	document.getElementById('ctn_output').value = encrypted; 
+ 
+}
+</script>
+
+
+
+<script>
+function fn_decrypt() {
+
+	let strA = document.getElementById('ctn_message').value ; 
+
+	let secretKey = 'a';
+
+	// cifra il contenuto della textarea message
+	let decrypted = CryptoJS.AES.decrypt(strA, secretKey).toString(CryptoJS.enc.Utf8);	
+	
+	document.getElementById('ctn_output').value = decrypted; 
+	
+}
+</script>
+
+
+</body>
+</html>			  
+			  
